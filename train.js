@@ -132,17 +132,59 @@
 // console.log(countLetter("m", "communication"));
 
 
-function countLetter(o, football) {
-    let count = 0;
-    letter = letter.toLowerCase();
-    word = word.toLowerCase();
+// function countLetter(o, football) {
+//     let count = 0;
+//     letter = letter.toLowerCase();
+//     word = word.toLowerCase();
 
-    for (let char of word) {
-        if (char === letter) {
-            count++;
-        }
-    }
-    return count;
-}
+//     for (let char of word) {
+//         if (char === letter) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
 
-console.log(countLetter("o", "fottball"));
+// console.log("Natija:", countLetter("o", "football"));
+
+
+// TASK-A
+// function countLetter(letter, word) {
+//     let count = 0;
+
+//     letter = letter.toLowerCase();
+//     word = word.toLowerCase();
+
+//     for (let char of word) {
+//         if (char === letter) {
+//             count++;
+//         }
+//     }
+//     return count:
+// }
+
+// console.log(countLetter("o", "fottball"));
+
+
+// TASK-A 
+// function countLetter(letter, word) {
+//     const count = 0;
+//     for (const char of word) {
+//         if (char === letter) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+
+
+// console.log(countLetter("o", "football"));
+// console.log(countLetter("f", "football"));
+// console.log(countLetter("t", "football"));
+// console.log(countLetter("b", "football"));
+// console.log(countLetter("l", "football"));
+
+
+
+
+
