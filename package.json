@@ -1,7 +1,7 @@
 {
   "name": "reja",
   "version": "1.0.0",
-  "description": "bu bizni birinchi loyihamiz ",
+  "description": "Bu bizning birinchi loyihamiz",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,15 +9,52 @@
     "train": "nodemon train.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "islamAli",
+  "author": "ALI",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.3.6",
     "ejs": "^3.1.10",
-    "express": "^5.1.0",
+    "express": "^4.17.3",
     "mongodb": "^3.2.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^3.1.10"
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
