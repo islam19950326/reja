@@ -1,9 +1,10 @@
 const http = require("http");
+
 const mongodb = require("mongodb");
 
 let db;
 const connectionString =
-  "mongodb+srv://Islamjan:rrABTCvAI8l4vyVD@cluster0.hmcdzz6.mongodb.net/Reja";
+"mongodb+srv://Islamjan:rrABTCvAI8l4vyVD@cluster0.hmcdzz6.mongodb.net/Reja";
 
 mongodb.connect(
   connectionString,
@@ -12,22 +13,90 @@ mongodb.connect(
     useUnifiedTopology: true,
   },
   (err, client) => {
-    if (err) console.log("ERROR on connection MongoDB");
-    else {
-      console.log("MongoDB connection succeed");
+    if (err) {
+      console.log("Error on connection to Mongodb");
+    } else {
+      console.log("connected to database successfully");
       module.exports = client;
-      //console.log(client);// database connection object
       const app = require("./app");
       const server = http.createServer(app);
       let PORT = 3000;
       server.listen(PORT, function () {
         console.log(
-          `The server is running succesfully on port: ${PORT}, http://localhost:${PORT}`
+          `the server is running successfully on port: ${PORT}, http://localhost:${PORT}`
         );
       });
     }
   }
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const http = require("http");
+// const mongodb = require("mongodb");
+
+// const { toUnicode } = require("punycode");
+
+// let db;
+// const connectionString =
+//   "mongodb+srv://Islamjan:rrABTCvAI8l4vyVD@cluster0.hmcdzz6.mongodb.net/Reja";
+
+// mongodb.connect(
+//   connectionString,
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+//   (err, client) => {
+//     if (err) console.log("ERROR on connection MongoDB");
+//     else {
+//       console.log("MongoDB connection succeed");
+//       module.exports = client;
+//       //console.log(client);// database connection object
+//       const app = require("./app");
+//       const server = http.createServer(app);
+//       let PORT = 3000;
+//       server.listen(PORT, function () {
+//         console.log(
+//           `The server is running succesfully on port: ${PORT}, http://localhost:${PORT}`
+//         );
+//       });
+//     }
+//   }
+// );
 
 
 
