@@ -13,7 +13,7 @@ console.log(result);
 
 // function countDigits(str) {
 //     let count = 0;
-//     for (let i = 0; i < str.length; i++) {
+//     for (let i = 0; i < stgit ir.length; i++) {
 //         if (!isNaN(str[i]) && str[i] !== " ") {
 
 //         }
