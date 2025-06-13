@@ -1,11 +1,94 @@
+// Task C
+
+class Shop {
+    constructor(non, lagmon, cola) {
+      this.products = {
+        non: non,
+        lagmon: lagmon,
+        cola: cola
+      };
+    }
+  
+    // Vaqtni olish uchun yordamchi metod
+    getCurrentTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      return `${hours}:${minutes}`;
+    }
+  
+    // 📦 Qoldiqni ko‘rsatish
+    qoldiq() {
+      const time = this.getCurrentTime();
+      console.log(
+        `Hozir ${time}da ${this.products.non}ta non, ${this.products.lagmon}ta lag'mon va ${this.products.cola}ta cola mavjud`
+      );
+    }
+  
+    //  Sotish
+    sotish(nomi, soni) {
+      if (this.products[nomi] === undefined) {
+        console.log(`Mahsulot topilmadi: ${nomi}`);
+        return;
+      }
+  
+      if (this.products[nomi] < soni) {
+        console.log(`Xatolik: Yetarli ${nomi} mavjud emas`);
+      } else {
+        this.products[nomi] -= soni;
+        const time = this.getCurrentTime();
+        console.log(`Hozir ${time}da ${soni}ta ${nomi} sotildi.`);
+      }
+    }
+  
+    // 🚚Qabul qilish
+    qabul(nomi, soni) {
+      if (this.products[nomi] === undefined) {
+        console.log(`Mahsulot topilmadi: ${nomi}`);
+        return;
+      }
+  
+      this.products[nomi] += soni;
+      const time = this.getCurrentTime();
+      console.log(`Hozir ${time}da ${soni}ta ${nomi} qabul qilindi.`);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // B-TASK
 
-function countDigits(str) {
-    return (str.match(/\d/g) || []).length;
-}
+// function countDigits(str) {
+//     return (str.match(/\d/g) || []).length;
+// }
 
-const result = countDigits("ad2a54y79wet0sfgb9");
-console.log(result); 
+// const result = countDigits("ad2a54y79wet0sfgb9");
+// console.log(result); 
 
 
 

@@ -5,7 +5,6 @@ const mongodb = require("mongodb");
 let db;
 const connectionString =
 "mongodb+srv://Islamjan:rrABTCvAI8l4vyVD@cluster0.hmcdzz6.mongodb.net/Reja";
-
 mongodb.connect(
   connectionString,
   {
