@@ -1,64 +1,105 @@
-console.log("web serverni boshlash");
+console.log("Web Serverni boshlash");
 const express = require("express");
+const res = require("express/lib/response");
 const app = express();
-
 const fs = require("fs");
+//CRUD ishlashi uchun Mongodb ni require qilib olamiz
+const mongodb = require("mongodb");
 
 let user;
 fs.readFile("database/user.json", "utf8", (err, data) => {
   if (err) {
-    console.log("ERROR", err);
+    console.log("ERROR:", err);
   } else {
     user = JSON.parse(data);
   }
 });
 
-//Mongodb connect/ chaqirish
-
+//MongoDB chaqiramiz
 const db = require("./server").db();
-const mongodb = require("mongodb");
-
-// 1 kirish codelari
+//server.js dan client.db() chaqirish orqali connection quramiz
+//va natijada CRUD amallarini bajarish imkonini yaratamiz
+//1.Kirish code
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 2: session code
-// 3 views code
+//2. Session codes
+//3. Views codes
 app.set("views", "views");
 app.set("view engine", "ejs");
 
-// 4 routing code
+//4.Routing codes
 app.post("/create-item", (req, res) => {
-  console.log("user entered / create-item");
+  //console.log("CRUD => CREATE ")
+  // console.log("STEP-2: FrontEnd da backendga kirish");
+  console.log(req.body);
   const new_reja = req.body.reja;
+  // console.log("STEP-3: BACKEND => DATABASE ");
   db.collection("plans").insertOne({ reja: new_reja }, (err, data) => {
-    console.log(data.ops);
-   res.json(data.ops[0]);
+    // console.log("STEP-4: DATABASE => BACKEND");
+    //modern post uchun yozamiz
+    // console.log(data.ops);
+    // console.log("STEP-5: BACKEND => FRONTEND ");
+    res.json(data.ops[0]);
   });
 });
 
 app.post("/delete-item", (req, res) => {
+  //console.log("CRUD => DELETE ")
   const id = req.body.id;
-  db.collection("plans").deleteOne({_id: new mongodb.ObjectId(id)}, function(err, data) {
-    res.json({ state: "success" });
+  // console.log(id);
+  //db ga kirib malumotni ochirish =>
+  db.collection("plans").deleteOne(
+    { _id: new mongodb.ObjectId(id) },
+    function (err, data) {
+      res.json({ state: "success" });
+    }
+  );
+});
+
+app.post("/edit-item", (req, res) => {
+  //console.log("CRUD => UPDATE ")
+  const data = req.body;
+  console.log(data);
+  db.collection("plans").findOneAndUpdate(
+    { _id: new mongodb.ObjectId(data.id) },
+    { $set: { reja: data.new_input } },
+    function (err, data) {
+      res.json({ state: "success" });
+    }
+  );
+});
+
+app.post("/delete-all", (req, res) => {
+  if (req.body.delete_all) {
+    db.collection("plans").deleteMany(function () {
+      res.json({ state: "Hamma rejalar ochirildi" });
+    });
   }
-);
 });
 
 app.get("/", function (req, res) {
-  console.log("user entered /");
-  db.collection("plans")
-    .find()
+  //console.log("CRUD => READ ")
+  // console.log("STEP-1: Browserda Localhost:3000 ga enter bosib kirilganda FRONTENDda boshlanadi");
+  // console.log("STEP-2: BACKENDga kirish");
+  // console.log("STEP-3: BACKEND => DATABASE jonash");
+
+  db.collection("plans") //plans degan collectionni ushla
+    .find() // unidagi hamma malumotlarni ol
     .toArray((err, data) => {
-      if (err) {
-        console.log(err);
-        res.end("something went wrong");
-      } else {
-        // console.log(data);
-        res.render("reja", { items: data });
-      }
+      // va shu malumotlarni array ga otkaz
+      // console.log("STEP-4: DATABASE => BACKEND ga qaytib keladi data ni olib keladi");
+      console.log(data);
+      res.render("reja", { items: data });
+      //Backendda DB dan kelgan datani olib reja.ejs ga berayapti va bu orqali HTML ni qurayapti
+      //va FRONTENDga yuborayapti
+      // console.log("STEP-5: BACKEND HTML => FRONTEND ga javob yuboradi");
     });
+});
+
+app.get("/author", (req, res) => {
+  res.render("author", { user: user });
 });
 
 module.exports = app;
@@ -100,67 +141,3 @@ module.exports = app;
 
 
 
-
-// console.log("Web Serverni boshlash");
-// const express = require("express");
-// const res = require("express/lib/response");
-// const app = express();
-// const fs = require("fs");
-
-// let user;
-// fs.readFile("database/user.json", "utf8", (err, data) => {
-//   if (err) {
-//     console.log("ERROR:", err);
-//   } else {
-//     user = JSON.parse(data);
-//   }
-// });
-
-// //MongoDB chaqiramiz
-// const db = require("./server").db();
-// /*ushbu ozgaruvchi mongodb instanceni qolga olib beradi
-// bu orqali databasega turli malumotlarni
-// yozish/ochirish/oqish... */
-// //1.Kirish code
-// app.use(express.static("public"));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// //2. Session codes
-// //3. Views codes
-// app.set("views", "views");
-// app.set("view engine", "ejs");
-
-// //4.Routing codes
-// app.post("/create-item", (req, res) => {
-//   console.log("user entered /create-item");
-//   console.log(req.body);
-//   const new_reja = req.body.reja;
-//   db.collection("plans").insertOne({ reja: new_reja }, (err, data) => {
-//     if (err) {
-//       console.log(err);
-//       res.end("something went wrong");
-//     } else {
-//       res.end("succesfully added");
-//     }
-//   });
-// });
-// app.get("/", function (req, res) {
-//   console.log("user entered /");
-//   db.collection("plans")
-//     .find()
-//     .toArray((err, data) => {
-//       if (err) {
-//         console.log(err);
-//         res.end("something went wrong");
-//       } else {
-//         // console.log(data);
-//         res.render("reja", { items: data });
-//       }
-//     });
-// });
-// app.get("/author", (req, res) => {
-//   res.render("author", { user: user });
-// });
-
-// module.exports = app;

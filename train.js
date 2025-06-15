@@ -1,82 +1,87 @@
-// Task C
+//task D
+function checkContent(str1, str2) {
+  // Agar uzunliklar har xil bo‘lsa, to‘g‘ridan-to‘g‘ri false qaytaramiz
+  if (str1.length !== str2.length) return false;
 
-class Shop {
-    constructor(non, lagmon, cola) {
-      this.products = {
-        non: non,
-        lagmon: lagmon,
-        cola: cola
-      };
-    }
+  // Satrlarni massivga aylantirib, harflarni tartiblab, stringga qayta aylantiramiz
+  let sorted1 = str1.split('').sort().join('');
+  let sorted2 = str2.split('').sort().join('');
+
+  // Ikkala satr tartiblangan holatda teng bo‘lsa, true qaytariladi
+  return sorted1 === sorted2;
+}
+
+// Misol:
+console.log(checkContent("mitgroup", "gmtiprou")); // true
+console.log(checkContent("hello", "olelh"));       // true
+console.log(checkContent("abc", "def"));           // false
+
+
+
+
+
+
+
+
+
+
+
+
+// // Task C
+
+// class Shop {
+//     constructor(non, lagmon, cola) {
+//       this.products = {
+//         non: non,
+//         lagmon: lagmon,
+//         cola: cola
+//       };
+//     }
   
-    // Vaqtni olish uchun yordamchi metod
-    getCurrentTime() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      return `${hours}:${minutes}`;
-    }
+//     // Vaqtni olish uchun yordamchi metod
+//     getCurrentTime() {
+//       const now = new Date();
+//       const hours = String(now.getHours()).padStart(2, "0");
+//       const minutes = String(now.getMinutes()).padStart(2, "0");
+//       return `${hours}:${minutes}`;
+//     }
   
-    // 📦 Qoldiqni ko‘rsatish
-    qoldiq() {
-      const time = this.getCurrentTime();
-      console.log(
-        `Hozir ${time}da ${this.products.non}ta non, ${this.products.lagmon}ta lag'mon va ${this.products.cola}ta cola mavjud`
-      );
-    }
+//     // 📦 Qoldiqni ko‘rsatish
+//     qoldiq() {
+//       const time = this.getCurrentTime();
+//       console.log(
+//         `Hozir ${time}da ${this.products.non}ta non, ${this.products.lagmon}ta lag'mon va ${this.products.cola}ta cola mavjud`
+//       );
+//     }
   
-    //  Sotish
-    sotish(nomi, soni) {
-      if (this.products[nomi] === undefined) {
-        console.log(`Mahsulot topilmadi: ${nomi}`);
-        return;
-      }
+//     //  Sotish
+//     sotish(nomi, soni) {
+//       if (this.products[nomi] === undefined) {
+//         console.log(`Mahsulot topilmadi: ${nomi}`);
+//         return;
+//       }
   
-      if (this.products[nomi] < soni) {
-        console.log(`Xatolik: Yetarli ${nomi} mavjud emas`);
-      } else {
-        this.products[nomi] -= soni;
-        const time = this.getCurrentTime();
-        console.log(`Hozir ${time}da ${soni}ta ${nomi} sotildi.`);
-      }
-    }
+//       if (this.products[nomi] < soni) {
+//         console.log(`Xatolik: Yetarli ${nomi} mavjud emas`);
+//       } else {
+//         this.products[nomi] -= soni;
+//         const time = this.getCurrentTime();
+//         console.log(`Hozir ${time}da ${soni}ta ${nomi} sotildi.`);
+//       }
+//     }
   
-    // 🚚Qabul qilish
-    qabul(nomi, soni) {
-      if (this.products[nomi] === undefined) {
-        console.log(`Mahsulot topilmadi: ${nomi}`);
-        return;
-      }
+//     // 🚚Qabul qilish
+//     qabul(nomi, soni) {
+//       if (this.products[nomi] === undefined) {
+//         console.log(`Mahsulot topilmadi: ${nomi}`);
+//         return;
+//       }
   
-      this.products[nomi] += soni;
-      const time = this.getCurrentTime();
-      console.log(`Hozir ${time}da ${soni}ta ${nomi} qabul qilindi.`);
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//       this.products[nomi] += soni;
+//       const time = this.getCurrentTime();
+//       console.log(`Hozir ${time}da ${soni}ta ${nomi} qabul qilindi.`);
+//     }
+//   }
 
 
 
