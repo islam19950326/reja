@@ -1,20 +1,39 @@
-//task D
-function checkContent(str1, str2) {
-  // Agar uzunliklar har xil bo‘lsa, to‘g‘ridan-to‘g‘ri false qaytaramiz
-  if (str1.length !== str2.length) return false;
+// task C
 
-  // Satrlarni massivga aylantirib, harflarni tartiblab, stringga qayta aylantiramiz
-  let sorted1 = str1.split('').sort().join('');
-  let sorted2 = str2.split('').sort().join('');
-
-  // Ikkala satr tartiblangan holatda teng bo‘lsa, true qaytariladi
-  return sorted1 === sorted2;
+function getReverse(str) {
+  return str.split('').reverse().join('');
 }
 
-// Misol:
-console.log(checkContent("mitgroup", "gmtiprou")); // true
-console.log(checkContent("hello", "olelh"));       // true
-console.log(checkContent("abc", "def"));           // false
+// Misol
+console.log(getReverse("busan")); // Natija: "nasub"
+
+
+
+
+
+
+
+
+
+
+
+// //task D
+// function checkContent(str1, str2) {
+//   // Agar uzunliklar har xil bo‘lsa, to‘g‘ridan-to‘g‘ri false qaytaramiz
+//   if (str1.length !== str2.length) return false;
+
+//   // Satrlarni massivga aylantirib, harflarni tartiblab, stringga qayta aylantiramiz
+//   let sorted1 = str1.split('').sort().join('');
+//   let sorted2 = str2.split('').sort().join('');
+
+//   // Ikkala satr tartiblangan holatda teng bo‘lsa, true qaytariladi
+//   return sorted1 === sorted2;
+// }
+
+// // Misol:
+// console.log(checkContent("mitgroup", "gmtiprou")); // true
+// console.log(checkContent("hello", "olelh"));       // true
+// console.log(checkContent("abc", "def"));           // false
 
 
 
